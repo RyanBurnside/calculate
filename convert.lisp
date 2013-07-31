@@ -40,9 +40,8 @@
      (cadr (assoc unit2 cm-table))))
 
 (defun request-units(num1 unit1 unit2)
-  (when (and (assoc unit1 cm-table) (assoc unit2 cm-table))
-      (princ (convert num1 unit1 unit2))
-      (return-from request-units))
+  (if (and (assoc unit1 cm-table) (assoc unit2 cm-table))
+      (return-from request-units (convert num1 unit1 unit2)))
 
   (if (not (assoc unit1 cm-table))
       (format t "First unit ~A is not understood" unit1))
